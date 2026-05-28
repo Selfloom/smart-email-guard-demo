@@ -66,7 +66,7 @@ cd smart-email-guard-demo/extension
 ## Pricing
 
 - **Free**: All three detection rules, unlimited emails
-- **Pro** ($29 one-time, coming soon): Custom keyword rules, tone guard, undo-send delay
+- **Pro** ($29 one-time via [Buy Me a Coffee](https://buymeacoffee.com/selfloom)): Custom keyword rules, tone guard, undo-send delay. Include "Smart Email Guard Pro" in the message.
 
 ---
 
