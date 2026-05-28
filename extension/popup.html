@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Email Guard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-icon">&#x1F6E1;</div>
+      <div class="header-text">
+        <h1>Smart Email Guard</h1>
+        <span class="header-subtitle">Never forget an attachment again</span>
+      </div>
+    </header>
+
+    <!-- Default Patterns -->
+    <section class="section">
+      <h2 class="section-title">Default Patterns</h2>
+      <div id="default-patterns" class="patterns-list">
+        <!-- Rendered by popup.js -->
+      </div>
+    </section>
+
+    <!-- Custom Patterns -->
+    <section class="section">
+      <h2 class="section-title">Custom Patterns</h2>
+      <div id="custom-patterns" class="patterns-list">
+        <!-- Rendered by popup.js -->
+      </div>
+      <div class="add-pattern-form">
+        <input type="text" id="custom-phrase" class="input" placeholder="Enter trigger phrase..." maxlength="60">
+        <select id="custom-type" class="select">
+          <option value="file">File Attachment</option>
+          <option value="link">URL / Link</option>
+          <option value="cc">CC Recipient</option>
+        </select>
+        <button id="add-custom-btn" class="btn btn-primary btn-sm">+ Add</button>
+      </div>
+      <div id="add-error" class="error-msg" style="display:none;"></div>
+    </section>
+
+    <!-- Pro Upgrade Card -->
+    <section class="section">
+      <div class="pro-card">
+        <div class="pro-badge">&#x2B50; PRO</div>
+        <h3>Unlock Unlimited Patterns</h3>
+        <p>Free tier includes 3 default patterns. Upgrade to Pro for unlimited custom patterns, regex support, and multi-language detection.</p>
+        <div class="pro-price">$3.99<span>/month</span></div>
+        <button id="upgrade-btn" class="btn btn-pro">Upgrade to Pro</button>
+        <div id="pro-msg" class="pro-msg" style="display:none;"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <button id="reset-btn" class="btn-text">Reset to defaults</button>
+      <span class="version">v1.0.0</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
