@@ -540,6 +540,134 @@ body {
   margin: 0;
 }
 
+/* ─── Visual Install Guide ─── */
+.install-guide {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.install-step {
+  position: relative;
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--c-border);
+  transition: transform .2s, box-shadow .2s;
+  animation: installFadeIn .5s ease backwards;
+}
+.install-step:nth-child(1) { animation-delay: .1s; }
+.install-step:nth-child(2) { animation-delay: .2s; }
+.install-step:nth-child(3) { animation-delay: .3s; }
+.install-step:nth-child(4) { animation-delay: .4s; }
+.install-step:nth-child(5) { animation-delay: .5s; }
+.install-step:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.install-step .step-badge {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+  color: #fff;
+  font-weight: 800;
+  font-size: .95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+.install-step .step-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  display: block;
+}
+.install-step h5 {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 4px;
+}
+.install-step p {
+  font-size: .75rem;
+  color: var(--c-text-muted);
+  line-height: 1.4;
+}
+.install-step .step-action {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  background: #eef2ff;
+  color: var(--c-primary);
+  border-radius: 4px;
+  font-size: .72rem;
+  font-weight: 700;
+  font-family: "SF Mono", "Consolas", "Monaco", monospace;
+  letter-spacing: .01em;
+}
+/* Arrow connector between steps (visible on wider screens) */
+@media (min-width: 900px) {
+  .install-step::after {
+    content: "→";
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: var(--c-primary);
+    font-weight: 700;
+    opacity: .5;
+    pointer-events: none;
+  }
+  .install-step:last-child::after { display: none; }
+}
+
+@keyframes installFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Sticky Download Bar ─── */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 150;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(12px);
+  border-top: 2px solid var(--c-primary);
+  box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  transform: translateY(100%);
+  transition: transform .35s ease;
+}
+.sticky-cta.visible {
+  transform: translateY(0);
+}
+.sticky-cta .cta-text {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.sticky-cta .cta-text span {
+  color: var(--c-primary);
+}
+.sticky-cta .btn {
+  animation: ctaPulse 2.5s ease infinite;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, .35); }
+  50%      { box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 640px) {
   .hero h1 { font-size: 2rem; }
@@ -549,6 +677,13 @@ body {
   .demo-actions-row .btn { min-width: 100%; }
   .comp-table { font-size: .8rem; }
   .comp-table th, .comp-table td { padding: 10px 12px; }
+  .sticky-cta {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .sticky-cta .cta-text {
+    font-size: .78rem;
+  }
 }
 </style>
 </head>
@@ -724,6 +859,59 @@ body {
         <h4>Warns you before you hit Send</h4>
         <p>If you mention an attachment, link, or CC but forget to include it, a gentle warning pops up. Fix it and send. That's it.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Visual Install Guide ─── -->
+<section class="section" id="install" style="background: var(--c-surface); padding-top: 40px;">
+  <div class="container">
+    <div class="section-hed">
+      <h2>Install in 60 seconds.</h2>
+      <p>No store needed — sideload in 5 steps. Works on Chrome, Edge, Brave, and any Chromium browser.</p>
+    </div>
+    <div class="install-guide">
+      <div class="install-step">
+        <span class="step-badge">1</span>
+        <span class="step-icon">⬇</span>
+        <h5>Download the .zip</h5>
+        <p>Get the latest release from GitHub</p>
+        <span class="step-action">smart-email-guard-v1.0.1.zip</span>
+      </div>
+      <div class="install-step">
+        <span class="step-badge">2</span>
+        <span class="step-icon">📂</span>
+        <h5>Unzip to a folder</h5>
+        <p>Extract anywhere on your computer — Desktop, Documents, wherever you keep extensions.</p>
+      </div>
+      <div class="install-step">
+        <span class="step-badge">3</span>
+        <span class="step-icon">🔗</span>
+        <h5>Open Extensions page</h5>
+        <p>Go to Extensions in your browser</p>
+        <span class="step-action">chrome://extensions</span>
+      </div>
+      <div class="install-step">
+        <span class="step-badge">4</span>
+        <span class="step-icon">🔧</span>
+        <h5>Enable Developer Mode</h5>
+        <p>Toggle the switch in the top-right corner of the extensions page.</p>
+      </div>
+      <div class="install-step">
+        <span class="step-badge">5</span>
+        <span class="step-icon">✅</span>
+        <h5>Load &amp; Done</h5>
+        <p>Click "Load unpacked", select the folder. Smart Email Guard is now active!</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 28px;">
+      <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank" style="font-size:1.05rem; padding: 16px 32px;">
+        <svg width="20" height="20" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="4" fill="currentColor"/></svg>
+        Download v1.0.1 (Free) &mdash; Start Here
+      </a>
+      <p style="margin-top:10px; font-size:.78rem; color:var(--c-text-muted);">
+        Detailed instructions in <a href="https://github.com/Selfloom/smart-email-guard-demo/blob/main/INSTALL.md" target="_blank" style="color:var(--c-primary);font-weight:600;">INSTALL.md</a> &middot; Zero sign-up &middot; 100% local &middot; Works offline
+      </p>
     </div>
   </div>
 </section>
@@ -1311,6 +1499,37 @@ body {
     toggleLink.checked = true;
     toggleCC.checked   = true;
   });
+})();
+</script>
+
+<!-- ─── Sticky Download Bar ─── -->
+<div class="sticky-cta" id="sticky-cta">
+  <span class="cta-text">Stop sending oops emails. <span>Install in 60 seconds.</span></span>
+  <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank" style="font-weight:700;">
+    <svg width="16" height="16" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="4" fill="currentColor"/></svg>
+    Download v1.0.1 (Free)
+  </a>
+</div>
+
+<script>
+(function() {
+  var sticky = document.getElementById('sticky-cta');
+  if (!sticky) return;
+  var hero = document.querySelector('.hero');
+  if (!hero) {
+    sticky.classList.add('visible');
+    return;
+  }
+  function checkScroll() {
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    if (heroBottom < 0) {
+      sticky.classList.add('visible');
+    } else {
+      sticky.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', checkScroll, { passive: true });
+  checkScroll();
 })();
 </script>
 

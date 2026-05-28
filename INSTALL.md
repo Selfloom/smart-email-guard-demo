@@ -2,16 +2,24 @@
 
 > Chrome Extension that catches missing attachments, forgotten links, and CC mistakes before you send emails.
 
+## Visual Install Guide
+
+Prefer pictures? The interactive demo page has a **[visual step-by-step install guide](https://selfloom.github.io/smart-email-guard-demo/#install)** showing all 5 steps — download, unzip, extensions page, developer mode, and load unpacked — with visual cards and a persistent download button.
+
 ## Quick Install (Sideload — No Store Needed)
 
 ### Chrome / Brave / Edge
 
-1. **Download** `smart-email-guard-v1.0.1.zip` from [GitHub Releases](https://github.com/Selfloom/smart-email-guard-demo/releases)
-2. **Unzip** the file to a folder on your computer
-3. Open Chrome and go to `chrome://extensions/`
-4. Turn on **Developer mode** (toggle in top-right corner)
-5. Click **Load unpacked** and select the unzipped folder
-6. Smart Email Guard is now active!
+| Step | Action | Detail |
+|------|--------|--------|
+| 1 | **Download** | Get `smart-email-guard-v1.0.1.zip` from [GitHub Releases](https://github.com/Selfloom/smart-email-guard-demo/releases) |
+| 2 | **Unzip** | Extract to a folder on your computer (Desktop, Documents, anywhere) |
+| 3 | **Open** | Go to `chrome://extensions` in Chrome |
+| 4 | **Toggle** | Turn on **Developer mode** (top-right corner switch) |
+| 5 | **Load** | Click **Load unpacked** → select the unzipped folder |
+| 6 | **Done** | Smart Email Guard is now active! Look for the shield icon 🔰 |
+
+> **Tip**: Pin the extension for easy access. Click the puzzle-piece icon 🧩 in Chrome's toolbar, find Smart Email Guard, and click the pin 📌.
 
 ### Firefox
 
@@ -25,7 +33,7 @@ Not yet available. Porting in progress — [watch this repo](https://github.com/
 
 ## Try Before Installing
 
-Visit the [interactive demo](https://selfloom.github.io/smart-email-guard-demo/) — type a test email, click Send, and see the extension detect mistakes in real time.
+Visit the [interactive demo](https://selfloom.github.io/smart-email-guard-demo/) — type a test email, click Send, and see the extension detect mistakes in real time. The demo includes a **[visual 5-step install walkthrough](https://selfloom.github.io/smart-email-guard-demo/#install)** with detailed cards for each step.
 
 ## What It Detects
 
