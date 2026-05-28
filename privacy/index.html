@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Smart Email Guard</title>
+<style>
+/* ─── CSS Custom Properties (matching demo page) ─── */
+:root {
+  --c-bg:          #f8f9fc;
+  --c-surface:     #ffffff;
+  --c-primary:     #4f46e5;
+  --c-primary-h:   #4338ca;
+  --c-accent:      #7c3aed;
+  --c-text:        #1e293b;
+  --c-text-muted:  #64748b;
+  --c-border:      #e2e8f0;
+  --c-warn-bg:     #fffbeb;
+  --c-warn-border: #f59e0b;
+  --c-warn-text:   #92400e;
+  --c-success:     #059669;
+  --c-danger:      #dc2626;
+  --radius:        12px;
+  --shadow-sm:     0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:     0 4px 16px rgba(0,0,0,.10);
+  --shadow-lg:     0 12px 40px rgba(0,0,0,.14);
+  --font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Utility ─── */
+.container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── Header ─── */
+.site-header {
+  padding: 16px 0;
+  background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--c-border);
+}
+.site-header .container { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 1.25rem; font-weight: 800; color: var(--c-primary); text-decoration: none; }
+.logo span { color: var(--c-accent); }
+.back-link {
+  font-size: .9rem; color: var(--c-text-muted); text-decoration: none;
+  font-weight: 500; transition: color .15s;
+}
+.back-link:hover { color: var(--c-primary); }
+
+/* ─── Page Header ─── */
+.page-header {
+  padding: 64px 0 48px;
+  text-align: center;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 50%, #faf5ff 100%);
+}
+.page-header h1 { font-size: 2.4rem; font-weight: 900; line-height: 1.2; margin-bottom: 10px; }
+.page-header .updated {
+  font-size: .85rem; color: var(--c-text-muted);
+  display: inline-block; padding: 4px 14px; border-radius: 20px;
+  background: rgba(255,255,255,.7); border: 1px solid var(--c-border);
+}
+
+/* ─── Summary Banner ─── */
+.summary-banner {
+  margin: -28px 0 48px; position: relative; z-index: 10;
+}
+.summary-banner .card {
+  background: var(--c-surface); border-radius: var(--radius);
+  padding: 28px 32px; box-shadow: var(--shadow-md);
+  border: 2px solid var(--c-success);
+  text-align: center;
+}
+.summary-banner .card .icon { font-size: 2rem; margin-bottom: 8px; }
+.summary-banner .card h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--c-success); }
+.summary-banner .card p { font-size: .95rem; color: var(--c-text-muted); max-width: 560px; margin: 0 auto; }
+
+/* ─── Content ─── */
+.content { padding: 0 0 80px; }
+
+.policy-section {
+  margin-bottom: 40px;
+  background: var(--c-surface); border-radius: var(--radius);
+  padding: 32px; box-shadow: var(--shadow-sm);
+  border: 1px solid var(--c-border);
+}
+.policy-section h2 {
+  font-size: 1.25rem; font-weight: 700; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.policy-section h2 .num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--c-primary); color: #fff;
+  font-size: .9rem; font-weight: 800; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.policy-section p { font-size: .95rem; color: var(--c-text-muted); margin-bottom: 12px; }
+.policy-section p:last-child { margin-bottom: 0; }
+.policy-section ul { margin: 8px 0 12px; padding-left: 20px; }
+.policy-section ul li { font-size: .95rem; color: var(--c-text-muted); margin-bottom: 6px; line-height: 1.6; }
+.policy-section ul li:last-child { margin-bottom: 0; }
+.policy-section code {
+  background: var(--c-bg); padding: 2px 6px; border-radius: 4px;
+  font-size: .85rem; color: var(--c-primary); font-family: "SF Mono", Consolas, monospace;
+}
+
+.highlight-box {
+  background: var(--c-bg); border-radius: 8px; padding: 20px 24px;
+  margin-top: 16px; border-left: 3px solid var(--c-primary);
+}
+.highlight-box p { font-size: .9rem; color: var(--c-text-muted); margin: 4px 0; }
+.highlight-box p strong { color: var(--c-text); }
+
+.data-flow {
+  display: flex; align-items: center; gap: 16px; margin: 20px 0;
+  flex-wrap: wrap; justify-content: center;
+}
+.data-flow .step-box {
+  background: var(--c-bg); border-radius: 8px; padding: 16px 20px;
+  text-align: center; border: 1px solid var(--c-border);
+  min-width: 120px;
+}
+.data-flow .step-box .step-icon { font-size: 1.4rem; margin-bottom: 4px; }
+.data-flow .step-box .step-label { font-size: .85rem; font-weight: 600; color: var(--c-text); }
+.data-flow .step-box .step-detail { font-size: .78rem; color: var(--c-text-muted); margin-top: 2px; }
+.data-flow .arrow { font-size: 1.2rem; color: var(--c-text-muted); }
+
+.contact-card {
+  background: var(--c-bg); border-radius: 8px; padding: 20px 24px;
+  margin-top: 16px;
+}
+.contact-card p { font-size: .9rem; color: var(--c-text-muted); margin: 2px 0; }
+.contact-card a { color: var(--c-primary); text-decoration: none; font-weight: 600; }
+.contact-card a:hover { text-decoration: underline; }
+
+/* ─── Footer ─── */
+.site-footer {
+  padding: 36px 0; text-align: center; border-top: 1px solid var(--c-border);
+  font-size: .85rem; color: var(--c-text-muted);
+}
+.site-footer a { color: var(--c-primary); text-decoration: none; font-weight: 600; }
+.site-footer a:hover { text-decoration: underline; }
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .page-header h1 { font-size: 1.7rem; }
+  .policy-section { padding: 24px 20px; }
+  .summary-banner .card { padding: 20px; }
+  .data-flow { flex-direction: column; }
+  .data-flow .arrow { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── Header ─── -->
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html" class="logo">Smart Email <span>Guard</span></a>
+    <a href="../index.html" class="back-link">&larr; Back to Smart Email Guard</a>
+  </div>
+</header>
+
+<!-- ─── Page Header ─── -->
+<section class="page-header">
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <span class="updated">Last updated: May 28, 2026</span>
+  </div>
+</section>
+
+<!-- ─── Summary Banner ─── -->
+<div class="summary-banner">
+  <div class="container">
+    <div class="card">
+      <div class="icon">🔒</div>
+      <h2>Smart Email Guard collects nothing. Period.</h2>
+      <p>
+        No data leaves your browser. No analytics. No accounts. No servers.
+        Everything the extension does happens right on your machine.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Content ─── -->
+<div class="content">
+  <div class="container">
+
+    <!-- Section 1 -->
+    <div class="policy-section">
+      <h2><span class="num">1</span> What data does Smart Email Guard access?</h2>
+      <p>
+        Smart Email Guard watches the text you type into your email <strong>compose window</strong>
+        — the box where you write new emails — on Gmail, Outlook Web, and Yahoo Mail.
+        It reads what you type so it can check for common mistakes before you hit Send.
+      </p>
+      <p>
+        Specifically, the extension accesses:
+      </p>
+      <ul>
+        <li>The text content of the compose window (subject line and message body)</li>
+        <li>The DOM structure of the compose page, to detect whether a CC field is filled</li>
+        <li>The page URL, to determine which email platform you are using (Gmail, Outlook, or Yahoo)</li>
+      </ul>
+      <p>
+        <strong>What it does not access:</strong> your inbox, received emails, sent emails, contacts list,
+        drafts, calendar, Google Drive, or anything else on the page. The extension only looks at
+        the compose window &mdash; and specifically only the text you are actively typing.
+      </p>
+      <div class="highlight-box">
+        <p><strong>Why this access is needed:</strong></p>
+        <p>
+          The extension needs to read compose window text to function. If you mention
+          "please find attached" but forgot to attach the file, or if you say "here's the link"
+          but didn't paste a URL &mdash; the extension catches that by analyzing your text.
+          There is no other way to provide this feature.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="policy-section">
+      <h2><span class="num">2</span> What data is stored?</h2>
+      <p>
+        <strong>Almost nothing.</strong> Smart Email Guard stores only your user preferences
+        (which guard checks you have enabled or disabled, and any custom patterns you create in Pro).
+        This data is saved in your browser's local storage &mdash; the same mechanism websites
+        use to remember your dark-mode preference or language setting.
+      </p>
+      <ul>
+        <li><strong>User preferences</strong> — which checks are on/off, custom regex patterns (Pro only)</li>
+        <li><strong>That's it.</strong> No email content, no drafts, no contacts, no usage logs.</li>
+      </ul>
+      <p>
+        Your preferences stay on your device. If you uninstall the extension, this data is
+        automatically removed by the browser. We have no way to recover it because we
+        never had it in the first place.
+      </p>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="policy-section">
+      <h2><span class="num">3</span> What data is shared?</h2>
+      <p>
+        <strong>Nothing. To anyone. Ever.</strong>
+      </p>
+      <p>
+        Smart Email Guard has no server, no backend, no cloud component, no analytics service,
+        no error-reporting endpoint, and no third-party integrations. The extension is entirely
+        self-contained &mdash; a single package of HTML, CSS, and JavaScript that runs inside
+        your browser.
+      </p>
+      <p>
+        We do not receive, collect, transmit, or store any of your data. We cannot
+        share what we never receive. There is simply no data pipeline out of the extension.
+      </p>
+      <div class="highlight-box">
+        <p><strong>You can verify this yourself:</strong></p>
+        <p>
+          The extension source code is available and you can inspect it or monitor its
+          network activity. You will see zero outbound requests. If you ever see data leaving
+          your browser from Smart Email Guard, that's a bug &mdash; and we'd want to know
+          about it immediately.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="policy-section">
+      <h2><span class="num">4</span> How does the extension work?</h2>
+      <p>
+        Here's the full data flow &mdash; it's short, because there isn't much flow:
+      </p>
+      <div class="data-flow">
+        <div class="step-box">
+          <div class="step-icon">⌨️</div>
+          <div class="step-label">You type</div>
+          <div class="step-detail">in Gmail/Outlook/Yahoo</div>
+        </div>
+        <div class="arrow">&rarr;</div>
+        <div class="step-box">
+          <div class="step-icon">🔍</div>
+          <div class="step-label">Pattern check</div>
+          <div class="step-detail">regex matching in-browser</div>
+        </div>
+        <div class="arrow">&rarr;</div>
+        <div class="step-box">
+          <div class="step-icon">⚠️</div>
+          <div class="step-label">Warning shown</div>
+          <div class="step-detail">if something looks off</div>
+        </div>
+      </div>
+      <p>
+        <strong>Step by step:</strong>
+      </p>
+      <ol style="margin: 8px 0 12px; padding-left: 20px;">
+        <li style="font-size:.95rem;color:var(--c-text-muted);margin-bottom:6px;line-height:1.6;">
+          The extension subscribes to text changes in the compose window using the browser's
+          <code>MutationObserver</code> API (built into every modern browser).
+        </li>
+        <li style="font-size:.95rem;color:var(--c-text-muted);margin-bottom:6px;line-height:1.6;">
+          When you type, the extension runs the text through a set of regex patterns
+          (regular expression rules) to detect phrases like "please find attached" or "here's the link."
+        </li>
+        <li style="font-size:.95rem;color:var(--c-text-muted);margin-bottom:6px;line-height:1.6;">
+          If a trigger phrase is found but the expected item (file attachment, URL, CC recipient)
+          appears absent, the extension displays a gentle warning message before you send.
+        </li>
+        <li style="font-size:.95rem;color:var(--c-text-muted);margin-bottom:0;line-height:1.6;">
+          That's it. At no point does the text leave your browser. The patterns are hardcoded
+          into the extension &mdash; there is no remote configuration, no cloud AI, no API calls.
+        </li>
+      </ol>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="policy-section">
+      <h2><span class="num">5</span> Third-party services</h2>
+      <p>
+        <strong>There are none.</strong> Smart Email Guard does not integrate with any third-party
+        service, API, analytics tool, advertising network, or cloud provider.
+      </p>
+      <p>
+        The extension does not use:
+      </p>
+      <ul>
+        <li>Google Analytics, Firebase, or any analytics platform</li>
+        <li>Crash reporting or error-logging services (Sentry, Bugsnag, etc.)</li>
+        <li>Advertising or tracking networks</li>
+        <li>CDN-hosted libraries (all code is bundled locally)</li>
+        <li>Remote configuration or feature flags</li>
+        <li>Any external API endpoint</li>
+      </ul>
+      <p>
+        If we ever add a Pro payment feature in the future, payment processing will be
+        handled by a standard provider (like Stripe or the Chrome Web Store Payments API)
+        and the privacy implications will be added to this policy before launch. The core
+        extension will remain local-only regardless.
+      </p>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="policy-section">
+      <h2><span class="num">6</span> Contact</h2>
+      <p>
+        If you have questions about this privacy policy, want to report a concern, or
+        just want to say hi &mdash; reach out anytime.
+      </p>
+      <div class="contact-card">
+        <p><strong>Email:</strong> <a href="mailto:hello@selfloom.ai">hello@selfloom.ai</a></p>
+        <p><strong>Website:</strong> <a href="https://selfloom.ai" target="_blank" rel="noopener">selfloom.ai</a></p>
+        <p><strong>Built by:</strong> Selfloom</p>
+      </div>
+      <p style="margin-top:16px;">
+        We designed Smart Email Guard to be private by default because that was the simplest
+        way to build it. No accounts, no servers, no data collection &mdash; just a helpful
+        extension that runs entirely on your machine.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── Footer ─── -->
+<footer class="site-footer">
+  <div class="container">
+    <p>Built by <a href="https://selfloom.ai" target="_blank" rel="noopener">Selfloom</a> &copy; 2026</p>
+    <p style="margin-top:4px;">
+      <a href="../index.html">&larr; Back to Smart Email Guard</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
