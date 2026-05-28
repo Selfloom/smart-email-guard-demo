@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Smart Email Guard Blog — tips, reviews, and comparisons for preventing email mistakes in Gmail, Outlook, and Yahoo Mail.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Selfloom">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://selfloom.github.io/smart-email-guard-demo/blog/">
+<meta property="og:title" content="Smart Email Guard Blog">
+<meta property="og:description" content="Tips, reviews, and comparisons for preventing email mistakes. Covers Gmail, Outlook, Yahoo Mail — attachment reminders, link checkers, CC verification, and more.">
+<meta property="og:url" content="https://selfloom.github.io/smart-email-guard-demo/blog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Smart Email Guard Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Smart Email Guard Blog">
+<meta name="twitter:description" content="Tips, reviews, and comparisons for preventing email mistakes.">
+<title>Smart Email Guard Blog — Email Mistake Prevention Tips &amp; Reviews</title>
+<style>
+:root {
+  --c-bg:          #f8f9fc;
+  --c-surface:     #ffffff;
+  --c-primary:     #4f46e5;
+  --c-primary-h:   #4338ca;
+  --c-accent:      #7c3aed;
+  --c-text:        #1e293b;
+  --c-text-muted:  #64748b;
+  --c-border:      #e2e8f0;
+  --radius:        12px;
+  --shadow-sm:     0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:     0 4px 16px rgba(0,0,0,.10);
+  --font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border: none; border-radius: 8px;
+  font-size: 1rem; font-weight: 600; cursor: pointer;
+  transition: transform .15s, box-shadow .15s, background .2s;
+  text-decoration: none;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--c-primary); color: #fff; }
+.btn-primary:hover { background: var(--c-primary-h); }
+
+.site-header {
+  padding: 16px 0;
+  background: rgba(255,255,255,.85); backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--c-border);
+}
+.site-header .container { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-size: 1.25rem; font-weight: 800; color: var(--c-primary); }
+.logo span { color: var(--c-accent); }
+
+.page-hero {
+  padding: 60px 0 50px;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 50%, #faf5ff 100%);
+  text-align: center;
+}
+.page-hero h1 { font-size: 2.4rem; font-weight: 900; margin-bottom: 8px; }
+.page-hero p { color: var(--c-text-muted); font-size: 1.05rem; }
+
+.posts-section { padding: 60px 0; }
+.post-card {
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--radius); padding: 28px 32px; margin-bottom: 20px;
+  box-shadow: var(--shadow-sm); transition: box-shadow .2s, transform .2s;
+}
+.post-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.post-card h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+.post-card h2 a { color: var(--c-primary); text-decoration: none; }
+.post-card h2 a:hover { text-decoration: underline; }
+.post-card .meta { font-size: .85rem; color: var(--c-text-muted); margin-bottom: 12px; }
+.post-card p { color: #334155; margin-bottom: 16px; }
+.post-card .tag {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: .75rem; font-weight: 600; margin-right: 6px;
+  background: #eef2ff; color: var(--c-primary);
+}
+
+.site-footer {
+  padding: 32px 0; border-top: 1px solid var(--c-border);
+  text-align: center; font-size: .85rem; color: var(--c-text-muted);
+}
+.site-footer a { color: var(--c-primary); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="https://selfloom.github.io/smart-email-guard-demo/" class="logo" style="text-decoration:none;">Smart <span>Email</span> Guard</a>
+    <nav style="display:flex;gap:20px;">
+      <a href="https://selfloom.github.io/smart-email-guard-demo/blog/" style="color:var(--c-primary);text-decoration:none;font-weight:600;">Blog</a>
+      <a href="https://selfloom.github.io/smart-email-guard-demo/" style="color:var(--c-text-muted);text-decoration:none;font-weight:500;">Try Demo &rarr;</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Smart Email Guard Blog</h1>
+    <p>Tips, reviews, and comparisons for preventing email mistakes in Gmail, Outlook, and Yahoo Mail</p>
+  </div>
+</section>
+
+<section class="posts-section">
+  <div class="container">
+
+    <div class="post-card">
+      <h2><a href="https://selfloom.github.io/smart-email-guard-demo/blog/best-email-mistake-prevention-tools-2026.html">Best Email Mistake Prevention Tools in 2026 — Compared</a></h2>
+      <div class="meta">May 28, 2026 &middot; 7 min read</div>
+      <p>Side-by-side comparison of 6 tools: Smart Email Guard, Gmail built-in, Boomerang, Mail Attach, Grammarly, and Superhuman. Includes full feature matrix, pricing comparison, privacy analysis, and recommendations by use case.</p>
+      <span class="tag">Comparison</span>
+      <span class="tag">Tools</span>
+      <span class="tag">2026</span>
+    </div>
+
+    <div class="post-card">
+      <h2><a href="https://selfloom.github.io/smart-email-guard-demo/blog/email-attachment-reminder-review.html">Smart Email Guard Review — Does It Actually Prevent Email Mistakes?</a></h2>
+      <div class="meta">May 28, 2026 &middot; 6 min read</div>
+      <p>In-depth review of Smart Email Guard: setup, detection accuracy across 3 test scenarios, pros/cons, privacy architecture analysis, alternative comparison table, pricing breakdown, and verdict with rating.</p>
+      <span class="tag">Review</span>
+      <span class="tag">Extension</span>
+      <span class="tag">Gmail</span>
+    </div>
+
+    <div class="post-card">
+      <h2><a href="https://selfloom.github.io/smart-email-guard-demo/blog/forgot-attachment-gmail-fix.html">Forgot Attachment in Gmail? Here's the Permanent Fix (2026)</a></h2>
+      <div class="meta">May 28, 2026 &middot; 5 min read</div>
+      <p>Why Gmail's built-in attachment reminder isn't reliable (backed by HN and Reddit evidence). Three ways to stop forgetting attachments: manual checklist, Gmail's tools, and Smart Email Guard. Real user pain quotes.</p>
+      <span class="tag">Guide</span>
+      <span class="tag">Gmail</span>
+      <span class="tag">Attachments</span>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Smart Email Guard by <a href="https://selfloom.github.io">Selfloom</a> &middot; <a href="https://selfloom.github.io/smart-email-guard-demo/privacy/">Privacy Policy</a> &middot; <a href="https://selfloom.github.io/smart-email-guard-demo/blog/">Blog</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
