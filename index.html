@@ -335,6 +335,211 @@ body {
 .site-footer a { color: var(--c-primary); text-decoration: none; font-weight: 600; }
 .site-footer a:hover { text-decoration: underline; }
 
+/* ─── Screenshot Gallery ─── */
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.shot-card {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--c-border);
+  transition: box-shadow .2s, transform .2s;
+}
+.shot-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* Mini browser chrome */
+.shot-chrome {
+  background: #2d2d2d;
+  display: flex;
+  flex-direction: column;
+}
+.shot-titlebar {
+  height: 18px;
+  background: #1c1c1c;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 5px;
+}
+.shot-dot { width: 8px; height: 8px; border-radius: 50%; }
+.shot-dot.r { background: #ff5f57; }
+.shot-dot.y { background: #febc2e; }
+.shot-dot.g { background: #34c759; }
+.shot-tab {
+  height: 20px;
+  background: #3c3c3c;
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  font-size: 10px;
+  color: #ccc;
+  overflow: hidden;
+}
+.shot-address {
+  height: 22px;
+  background: #3c3c3c;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 10px;
+  color: #999;
+}
+
+/* Shot body — where the action is */
+.shot-body {
+  padding: 14px 12px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.shot-body.warn-attachment { background: linear-gradient(135deg, #fef2f2, #fffbeb); }
+.shot-body.warn-link      { background: linear-gradient(135deg, #fffbeb, #fff8e1); }
+.shot-body.warn-cc        { background: linear-gradient(135deg, #fff3e0, #fce4ec); }
+.shot-body.info-popup     { background: #f5f3ff; }
+.shot-body.success-clear  { background: #ecfdf5; }
+
+/* Warning banner inside shot */
+.shot-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  width: 100%;
+}
+.shot-warning.attachment {
+  background: #fce8e6;
+  border: 1.5px solid #ea4335;
+}
+.shot-warning.link {
+  background: #fef7e0;
+  border: 1.5px solid #f9ab00;
+}
+.shot-warning.cc {
+  background: #fff3e0;
+  border: 1.5px solid #ff6d00;
+}
+.shot-warning .warn-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.shot-warning .warn-title {
+  font-weight: 700;
+  color: #202124;
+  font-size: 11px;
+}
+.shot-warning .warn-detail {
+  color: #5f6368;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* Popup-style card for screenshot 4 */
+.shot-popup {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  border: 1px solid #e0e0e0;
+}
+.shot-popup-header {
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.shot-popup-header .popup-logo {
+  width: 24px;
+  height: 24px;
+  background: rgba(255,255,255,.2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+.shot-popup-header .popup-title {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.shot-popup-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  border-bottom: 1px solid #f1f3f4;
+}
+.shot-popup-row:last-child { border-bottom: none; }
+.shot-popup-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.shot-popup-dot.pass { background: #e6f4ea; }
+.shot-popup-dot.warn { background: #fce8e6; }
+.shot-popup-row .popup-check-name { font-size: 11px; font-weight: 600; color: #202124; }
+.shot-popup-row .popup-check-stat { font-size: 10px; }
+.shot-popup-row .popup-check-stat.good { color: #1e8e3e; }
+.shot-popup-row .popup-check-stat.bad { color: #ea4335; }
+
+/* All-clear style */
+.shot-clear {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #e6f4ea;
+  border: 1.5px solid #1e8e3e;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #1e8e3e;
+  font-weight: 600;
+  width: 100%;
+}
+.shot-clear .clear-icon { font-size: 16px; }
+
+/* Shot label at bottom of card */
+.shot-label {
+  padding: 10px 12px;
+  background: #fafbfc;
+  border-top: 1px solid var(--c-border);
+  text-align: center;
+}
+.shot-label h5 {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin-bottom: 2px;
+}
+.shot-label p {
+  font-size: .72rem;
+  color: var(--c-text-muted);
+  margin: 0;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 640px) {
   .hero h1 { font-size: 2rem; }
@@ -520,6 +725,170 @@ body {
         <p>If you mention an attachment, link, or CC but forget to include it, a gentle warning pops up. Fix it and send. That's it.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ─── Screenshots Gallery ─── -->
+<section class="section" id="screenshots">
+  <div class="container">
+    <div class="section-hed">
+      <h2>See it in action.</h2>
+      <p>Smart Email Guard works right inside Gmail, Outlook, and Yahoo. Five real scenarios — all caught before you hit Send.</p>
+    </div>
+    <div class="screenshot-grid">
+
+      <!-- 1. Attachment Warning -->
+      <div class="shot-card">
+        <div class="shot-chrome">
+          <div class="shot-titlebar">
+            <span class="shot-dot r"></span><span class="shot-dot y"></span><span class="shot-dot g"></span>
+          </div>
+          <div class="shot-tab">📧 Gmail - client@company.com</div>
+          <div class="shot-address">🔒 mail.google.com</div>
+        </div>
+        <div class="shot-body warn-attachment">
+          <div style="font-size:11px;color:#5f6368;text-align:center;">Compose: <strong>"I've attached the updated spreadsheet..."</strong></div>
+          <div class="shot-warning attachment">
+            <span class="warn-icon">⚠️</span>
+            <div>
+              <div class="warn-title">Missing Attachment</div>
+              <div class="warn-detail">You said "attached" but no file is attached.</div>
+            </div>
+          </div>
+        </div>
+        <div class="shot-label">
+          <h5>Catches forgotten attachments</h5>
+          <p>Detects 10+ phrases like "I've attached", "see attached", "enclosed"</p>
+        </div>
+      </div>
+
+      <!-- 2. Link Warning -->
+      <div class="shot-card">
+        <div class="shot-chrome">
+          <div class="shot-titlebar">
+            <span class="shot-dot r"></span><span class="shot-dot y"></span><span class="shot-dot g"></span>
+          </div>
+          <div class="shot-tab">📧 Outlook - outlook.office.com</div>
+          <div class="shot-address">🔒 outlook.office.com/mail</div>
+        </div>
+        <div class="shot-body warn-link">
+          <div style="font-size:11px;color:#5f6368;text-align:center;">Compose: <strong>"Check the link below for the proposal..."</strong></div>
+          <div class="shot-warning link">
+            <span class="warn-icon">🔗</span>
+            <div>
+              <div class="warn-title">Missing Link</div>
+              <div class="warn-detail">You mentioned "link below" but no URL found in the email.</div>
+            </div>
+          </div>
+        </div>
+        <div class="shot-label">
+          <h5>Detects missing links</h5>
+          <p>Catches "link below", "see URL", "click here" with no actual link</p>
+        </div>
+      </div>
+
+      <!-- 3. CC Warning -->
+      <div class="shot-card">
+        <div class="shot-chrome">
+          <div class="shot-titlebar">
+            <span class="shot-dot r"></span><span class="shot-dot y"></span><span class="shot-dot g"></span>
+          </div>
+          <div class="shot-tab">📧 Yahoo Mail - mail.yahoo.com</div>
+          <div class="shot-address">🔒 mail.yahoo.com</div>
+        </div>
+        <div class="shot-body warn-cc">
+          <div style="font-size:11px;color:#5f6368;text-align:center;">Compose: <strong>"I'll CC Sarah on this thread..."</strong></div>
+          <div class="shot-warning cc">
+            <span class="warn-icon">📋</span>
+            <div>
+              <div class="warn-title">CC Recipient Missing</div>
+              <div class="warn-detail">You mentioned "Sarah" but she's not in the CC field.</div>
+            </div>
+          </div>
+        </div>
+        <div class="shot-label">
+          <h5>Remembers forgotten CCs</h5>
+          <p>Warns if you promise to CC someone but they aren't in the CC field</p>
+        </div>
+      </div>
+
+      <!-- 4. Extension Popup -->
+      <div class="shot-card">
+        <div class="shot-chrome">
+          <div class="shot-titlebar">
+            <span class="shot-dot r"></span><span class="shot-dot y"></span><span class="shot-dot g"></span>
+          </div>
+          <div class="shot-tab">📧 Gmail — compose window</div>
+          <div class="shot-address">🔒 mail.google.com</div>
+        </div>
+        <div class="shot-body info-popup">
+          <div class="shot-popup">
+            <div class="shot-popup-header">
+              <div class="popup-logo">🛡️</div>
+              <span class="popup-title">Smart Email Guard</span>
+              <span style="color:rgba(255,255,255,.5);font-size:10px;margin-left:auto;">v1.0.1</span>
+            </div>
+            <div class="shot-popup-row">
+              <div class="shot-popup-dot warn">⚠️</div>
+              <div style="flex:1;">
+                <div class="popup-check-name">Attachment Check</div>
+                <div class="popup-check-stat bad">Missing — "attached" found</div>
+              </div>
+            </div>
+            <div class="shot-popup-row">
+              <div class="shot-popup-dot pass">✓</div>
+              <div style="flex:1;">
+                <div class="popup-check-name">Link Check</div>
+                <div class="popup-check-stat good">Passed</div>
+              </div>
+            </div>
+            <div class="shot-popup-row">
+              <div class="shot-popup-dot pass">✓</div>
+              <div style="flex:1;">
+                <div class="popup-check-name">CC Check</div>
+                <div class="popup-check-stat good">Passed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="shot-label">
+          <h5>Status dashboard at a glance</h5>
+          <p>Click the extension icon to see what passed and what needs attention</p>
+        </div>
+      </div>
+
+      <!-- 5. All Clear -->
+      <div class="shot-card">
+        <div class="shot-chrome">
+          <div class="shot-titlebar">
+            <span class="shot-dot r"></span><span class="shot-dot y"></span><span class="shot-dot g"></span>
+          </div>
+          <div class="shot-tab">📧 Gmail — all checks passed</div>
+          <div class="shot-address">🔒 mail.google.com</div>
+        </div>
+        <div class="shot-body success-clear">
+          <div style="font-size:11px;color:#5f6368;text-align:center;">Compose: <strong>"Hi John, confirming our 3pm meeting tomorrow."</strong></div>
+          <div class="shot-clear">
+            <span class="clear-icon">✅</span>
+            <span>All Clear — No issues detected. Safe to send.</span>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:4px;">
+            <span style="font-size:10px;color:#1e8e3e;background:#e6f4ea;padding:2px 8px;border-radius:10px;">📎 Pass</span>
+            <span style="font-size:10px;color:#1e8e3e;background:#e6f4ea;padding:2px 8px;border-radius:10px;">🔗 Pass</span>
+            <span style="font-size:10px;color:#1e8e3e;background:#e6f4ea;padding:2px 8px;border-radius:10px;">📋 Pass</span>
+          </div>
+        </div>
+        <div class="shot-label">
+          <h5>Stays out of your way</h5>
+          <p>When everything's fine, you won't even notice it's there</p>
+        </div>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:.82rem;color:var(--c-text-muted);">
+      These are real screenshots from the Chrome extension &mdash; identical to what you'll see on install.
+      <br><a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" target="_blank" style="color:var(--c-primary);font-weight:600;">Download v1.0.1 (Free) &rarr;</a>
+    </p>
   </div>
 </section>
 
