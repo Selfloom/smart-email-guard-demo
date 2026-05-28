@@ -1,8 +1,11 @@
 {
   "manifest_version": 3,
   "name": "Smart Email Guard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Warns you before sending emails with missing attachments, links, or CC recipients.",
+  "homepage_url": "https://selfloom.github.io/smart-email-guard-demo/",
+  "author": { "email": "hello@selfloom.ai" },
+  "minimum_chrome_version": "93",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
