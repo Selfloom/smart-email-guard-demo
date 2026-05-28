@@ -6,7 +6,7 @@
 
 ### Chrome / Brave / Edge
 
-1. **Download** `smart-email-guard-v1.0.0.zip` from [GitHub Releases](https://github.com/Selfloom/smart-email-guard-demo/releases)
+1. **Download** `smart-email-guard-v1.0.1.zip` from [GitHub Releases](https://github.com/Selfloom/smart-email-guard-demo/releases)
 2. **Unzip** the file to a folder on your computer
 3. Open Chrome and go to `chrome://extensions/`
 4. Turn on **Developer mode** (toggle in top-right corner)
