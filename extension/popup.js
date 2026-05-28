@@ -253,12 +253,14 @@
   }
 
   function showUpgradeMessage() {
+    // Open Buy Me a Coffee support page in a new tab
+    window.open('https://buymeacoffee.com/selfloom', '_blank');
     var msgEl = document.getElementById('pro-msg');
-    msgEl.textContent = 'Coming soon! Pro features unlock unlimited custom patterns and regex support.';
+    msgEl.textContent = 'Opening support page\u2026 Smart Email Guard is free. Your support funds Pro development. Thank you!';
     msgEl.style.display = 'block';
     setTimeout(function () {
       msgEl.style.display = 'none';
-    }, 4000);
+    }, 5000);
   }
 
   function showError(message) {
