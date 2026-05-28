@@ -1533,5 +1533,314 @@ body {
 })();
 </script>
 
+<!-- ═══ Analytics & Feedback Loop ═══ -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Constants ──
+  var STORAGE_KEY = 'seg_analytics';
+  var SESSION_KEY = 'seg_session';
+  var VISITOR_KEY = 'seg_visitor_id';
+
+  // ── Helpers ──
+  function uid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0;
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+
+  function loadJSON(key) {
+    try { var d = localStorage.getItem(key); return d ? JSON.parse(d) : null; } catch(e) { return null; }
+  }
+
+  function saveJSON(key, obj) {
+    try { localStorage.setItem(key, JSON.stringify(obj)); } catch(e) { /* quota exceeded */ }
+  }
+
+  function loadSession(key) {
+    try { var d = sessionStorage.getItem(key); return d ? JSON.parse(d) : null; } catch(e) { return null; }
+  }
+
+  function saveSession(key, obj) {
+    try { sessionStorage.setItem(key, JSON.stringify(obj)); } catch(e) {}
+  }
+
+  function getUTMParams() {
+    var q = window.location.search;
+    if (!q) return {};
+    var p = {};
+    q.substring(1).split('&').forEach(function(pair) {
+      var kv = pair.split('=');
+      var k = decodeURIComponent(kv[0]);
+      if (k.indexOf('utm_') === 0) p[k] = decodeURIComponent(kv[1] || '');
+    });
+    return p;
+  }
+
+  // ── Visitor Identity ──
+  var visitorId = localStorage.getItem(VISITOR_KEY);
+  if (!visitorId) { visitorId = uid(); localStorage.setItem(VISITOR_KEY, visitorId); }
+
+  // ── Analytics State ──
+  var store = loadJSON(STORAGE_KEY) || {
+    totalPageViews: 0,
+    uniqueVisitors: 0,
+    scrollMilestones: { 25: false, 50: false, 75: false, 100: false },
+    clicks: {},
+    referrers: {},
+    utmSources: {},
+    firstVisitAt: null,
+    lastVisitAt: null
+  };
+
+  var session = loadSession(SESSION_KEY) || {
+    pageViewRecorded: false,
+    scrollMilestones: {},
+    startTime: Date.now(),
+    clicks: []
+  };
+
+  // ── Page View ──
+  if (!session.pageViewRecorded) {
+    session.pageViewRecorded = true;
+
+    // Is this a new unique visitor? (by visitorId)
+    var knownVisitors = loadJSON('seg_visitors') || {};
+    var isNew = !knownVisitors[visitorId];
+    if (isNew) {
+      knownVisitors[visitorId] = true;
+      saveJSON('seg_visitors', knownVisitors);
+      store.uniqueVisitors = (store.uniqueVisitors || 0) + 1;
+      store.firstVisitAt = store.firstVisitAt || new Date().toISOString();
+    }
+
+    store.totalPageViews = (store.totalPageViews || 0) + 1;
+    store.lastVisitAt = new Date().toISOString();
+
+    // Referrer tracking (external only, not same-origin)
+    var ref = document.referrer;
+    if (ref && ref.indexOf(window.location.origin) !== 0) {
+      try {
+        var refHost = (new URL(ref)).hostname;
+        store.referrers = store.referrers || {};
+        store.referrers[refHost] = (store.referrers[refHost] || 0) + 1;
+      } catch(e) {}
+    }
+
+    // UTM tracking
+    var utm = getUTMParams();
+    var utmKeys = Object.keys(utm);
+    if (utmKeys.length > 0) {
+      store.utmSources = store.utmSources || {};
+      var sourceKey = (utm.utm_source || 'direct') + '|' + (utm.utm_medium || 'none') + '|' + (utm.utm_campaign || 'none');
+      store.utmSources[sourceKey] = (store.utmSources[sourceKey] || 0) + 1;
+    }
+
+    saveJSON(STORAGE_KEY, store);
+    saveSession(SESSION_KEY, session);
+  }
+
+  // ── Scroll Depth Tracking ──
+  var scrollMilestonesFired = {};
+  function trackScrollDepth() {
+    var scrollH = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollH <= 0) return;
+    var pct = Math.round((window.scrollY / scrollH) * 100);
+    [25, 50, 75, 100].forEach(function(m) {
+      if (pct >= m && !scrollMilestonesFired[m]) {
+        scrollMilestonesFired[m] = true;
+        store.scrollMilestones = store.scrollMilestones || {};
+        store.scrollMilestones[m] = true;
+        saveJSON(STORAGE_KEY, store);
+      }
+    });
+  }
+  window.addEventListener('scroll', (function() {
+    var timeout;
+    return function() {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(trackScrollDepth, 200);
+    };
+  })(), { passive: true });
+  trackScrollDepth(); // initial check
+
+  // ── Click Tracking ──
+  function getClickLabel(el) {
+    // Priority: data-analytics > title/aria-label > innerText snippet > id > class hint
+    if (el.dataset && el.dataset.analytics) return el.dataset.analytics;
+    if (el.getAttribute('title')) return 'title:' + el.getAttribute('title');
+    if (el.getAttribute('aria-label')) return 'aria:' + el.getAttribute('aria-label');
+    var text = (el.innerText || el.textContent || '').trim().substring(0, 40);
+    if (text) return 'text:' + text;
+    if (el.id) return '#' + el.id;
+    if (el.className && typeof el.className === 'string') {
+      var cls = el.className.split(' ').filter(function(c) { return c.length > 2 && c.length < 30; })[0];
+      if (cls) return '.' + cls;
+    }
+    return 'tag:' + el.tagName.toLowerCase();
+  }
+
+  document.addEventListener('click', function(e) {
+    var el = e.target;
+    // Walk up to find a clickable parent (a, button, [role=button], .btn)
+    while (el && el !== document.body) {
+      var tag = el.tagName ? el.tagName.toLowerCase() : '';
+      if (tag === 'a' || tag === 'button' || el.getAttribute('role') === 'button' || (el.className && typeof el.className === 'string' && el.className.indexOf('btn') !== -1)) {
+        break;
+      }
+      el = el.parentElement;
+    }
+    if (!el || el === document.body) return;
+
+    var label = getClickLabel(el);
+    store.clicks = store.clicks || {};
+    store.clicks[label] = (store.clicks[label] || 0) + 1;
+
+    // Session-level click log (ordered, with timestamps)
+    session.clicks = session.clicks || [];
+    session.clicks.push({ label: label, ts: Date.now(), href: el.href || null });
+
+    saveJSON(STORAGE_KEY, store);
+    saveSession(SESSION_KEY, session);
+  }, true); // capture phase to get clicks before navigation
+
+  // ── Time on Page (save on unload) ──
+  window.addEventListener('beforeunload', function() {
+    var elapsed = Math.round((Date.now() - session.startTime) / 1000);
+    store.timeOnPageBucket = store.timeOnPageBucket || { '<10s': 0, '10-30s': 0, '30-60s': 0, '1-3m': 0, '3m+': 0 };
+    if      (elapsed < 10)  store.timeOnPageBucket['<10s']++;
+    else if (elapsed < 30)  store.timeOnPageBucket['10-30s']++;
+    else if (elapsed < 60)  store.timeOnPageBucket['30-60s']++;
+    else if (elapsed < 180) store.timeOnPageBucket['1-3m']++;
+    else                    store.timeOnPageBucket['3m+']++;
+    saveJSON(STORAGE_KEY, store);
+  });
+
+  // ── Analytics Dashboard (accessible via ?analytics) ──
+  var showDashboard = (window.location.search.indexOf('analytics') !== -1);
+  if (showDashboard) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var dash = document.createElement('div');
+      dash.id = 'analytics-dashboard';
+      dash.style.cssText = 'position:fixed;top:10px;right:10px;width:380px;max-height:90vh;overflow-y:auto;background:#1e1b4b;color:#e2e8f0;border:2px solid #6366f1;border-radius:12px;padding:20px;z-index:99999;font-family:monospace;font-size:12px;line-height:1.5;box-shadow:0 20px 60px rgba(0,0,0,.5);';
+
+      var s = store;
+      var ses = session;
+      var elapsed = Math.round((Date.now() - ses.startTime) / 1000);
+
+      var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">';
+      html += '<h3 style="margin:0;color:#818cf8;font-size:14px;">📊 Analytics Dashboard</h3>';
+      html += '<button onclick="this.parentElement.parentElement.remove()" style="background:#ef4444;color:white;border:none;border-radius:4px;padding:4px 10px;cursor:pointer;font-size:11px;">✕</button>';
+      html += '</div>';
+
+      // Visitor
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Visitor</strong><br>';
+      html += 'ID: ' + visitorId.substring(0,8) + '...<br>';
+      html += 'First seen: ' + (s.firstVisitAt || 'now') + '<br>';
+      html += 'Last seen: ' + (s.lastVisitAt || 'now') + '</div>';
+
+      // Totals
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Totals</strong><br>';
+      html += 'Page views: ' + (s.totalPageViews || 0) + '<br>';
+      html += 'Unique visitors: ' + (s.uniqueVisitors || 0) + '<br>';
+      html += 'Time this session: ' + elapsed + 's</div>';
+
+      // Scroll
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Scroll Depth</strong><br>';
+      var sm = s.scrollMilestones || {};
+      html += '25%: ' + (sm[25] ? '✅' : '—') + ' | 50%: ' + (sm[50] ? '✅' : '—') + ' | 75%: ' + (sm[75] ? '✅' : '—') + ' | 100%: ' + (sm[100] ? '✅' : '—') + '</div>';
+
+      // Time on page buckets
+      var tb = s.timeOnPageBucket || {};
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Time on Page (all visits)</strong><br>';
+      html += '&lt;10s: '+(tb['<10s']||0)+' | 10-30s: '+(tb['10-30s']||0)+' | 30-60s: '+(tb['30-60s']||0)+'<br>';
+      html += '1-3m: '+(tb['1-3m']||0)+' | 3m+: '+(tb['3m+']||0)+'</div>';
+
+      // Clicks
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Click Events</strong><br>';
+      var clicks = s.clicks || {};
+      var cKeys = Object.keys(clicks).sort(function(a,b) { return clicks[b] - clicks[a]; });
+      if (cKeys.length === 0) html += '<span style="color:#94a3b8;">none yet</span><br>';
+      cKeys.forEach(function(k) {
+        html += escapeHtml(k) + ': <strong>' + clicks[k] + '</strong><br>';
+      });
+      html += '</div>';
+
+      // Referrers
+      var refs = s.referrers || {};
+      var rKeys = Object.keys(refs);
+      if (rKeys.length > 0) {
+        html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Referrers</strong><br>';
+        rKeys.forEach(function(k) {
+          html += escapeHtml(k) + ': <strong>' + refs[k] + '</strong><br>';
+        });
+        html += '</div>';
+      }
+
+      // UTM
+      var utms = s.utmSources || {};
+      var uKeys = Object.keys(utms);
+      if (uKeys.length > 0) {
+        html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">UTM Sources</strong><br>';
+        uKeys.forEach(function(k) {
+          html += escapeHtml(k) + ': <strong>' + utms[k] + '</strong><br>';
+        });
+        html += '</div>';
+      }
+
+      // Session clicks
+      var sc = ses.clicks || [];
+      if (sc.length > 0) {
+        html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">This Session Clicks</strong><br>';
+        sc.forEach(function(c) {
+          html += '[' + new Date(c.ts).toISOString().substring(11,19) + '] ' + escapeHtml(c.label) + '<br>';
+        });
+        html += '</div>';
+      }
+
+      // Copy button
+      html += '<button id="copy-analytics-json" style="background:#6366f1;color:white;border:none;border-radius:6px;padding:8px 14px;cursor:pointer;font-size:12px;width:100%;">📋 Copy Full Stats as JSON</button>';
+      html += '<div id="copy-confirm" style="text-align:center;margin-top:6px;color:#34d399;font-size:11px;display:none;">Copied!</div>';
+
+      dash.innerHTML = html;
+      document.body.appendChild(dash);
+
+      // Copy handler
+      document.getElementById('copy-analytics-json').addEventListener('click', function() {
+        var payload = {
+          visitorId: visitorId,
+          exportedAt: new Date().toISOString(),
+          page: window.location.href,
+          totals: { pageViews: s.totalPageViews, uniqueVisitors: s.uniqueVisitors },
+          scrollMilestones: s.scrollMilestones,
+          timeOnPageBuckets: s.timeOnPageBucket,
+          clicks: s.clicks,
+          referrers: s.referrers,
+          utmSources: s.utmSources,
+          sessionClicks: (ses.clicks || []).map(function(c) { return { label: c.label, href: c.href }; })
+        };
+        navigator.clipboard.writeText(JSON.stringify(payload, null, 2)).then(function() {
+          var el = document.getElementById('copy-confirm');
+          el.style.display = 'block';
+          setTimeout(function() { el.style.display = 'none'; }, 2000);
+        }).catch(function() {
+          alert('Could not copy. Check console.');
+          console.log(payload);
+        });
+      });
+    });
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+  }
+
+  // ── Log startup ──
+  console.log('[SmartEmailGuard Analytics] Visitor:', visitorId.substring(0,8), '| PV #', store.totalPageViews, '| Unique:', store.uniqueVisitors, '| Add ?analytics to URL for dashboard');
+})();
+</script>
+
 </body>
 </html>
