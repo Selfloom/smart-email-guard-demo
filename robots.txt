@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /extension/
+
+Sitemap: https://selfloom.github.io/smart-email-guard-demo/sitemap.xml
