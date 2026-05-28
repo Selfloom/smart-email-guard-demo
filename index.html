@@ -694,8 +694,8 @@ body {
   <div class="container">
     <div class="logo">Smart Email <span>Guard</span></div>
     <nav style="display:flex;align-items:center;gap:16px;">
-      <a href="blog/" style="color:var(--c-text-muted);text-decoration:none;font-size:.85rem;font-weight:500;">Blog</a>
-      <a href="#demo" class="btn btn-primary" style="padding:8px 18px;font-size:.85rem;">Try the Demo</a>
+      <a href="blog/" style="color:var(--c-text-muted);text-decoration:none;font-size:.85rem;font-weight:500;" data-analytics="nav_blog">Blog</a>
+      <a href="#demo" class="btn btn-primary" style="padding:8px 18px;font-size:.85rem;" data-analytics="cta_try_demo">Try the Demo</a>
     </nav>
   </div>
 </header>
@@ -708,8 +708,8 @@ body {
     <p class="tagline">Smart Email Guard checks your email before you hit Send — and warns you when something looks missing.</p>
     <p class="sub-tagline">Works in Gmail, Outlook, and Yahoo Mail. Installs in seconds.</p>
     <div class="cta-group">
-      <a href="#demo" class="btn btn-primary">Try the Demo</a>
-      <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank">
+      <a href="#demo" class="btn btn-primary" data-analytics="cta_try_demo">Try the Demo</a>
+      <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank" data-analytics="cta_download_header">
         <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="4" fill="currentColor"/></svg>
         Download v1.0.1 (Free)
       </a>
@@ -814,8 +814,8 @@ body {
           </div>
         </div>
         <div class="demo-actions-row">
-          <button class="btn btn-outline" id="btn-load-example">Load Example</button>
-          <button class="btn btn-primary" id="btn-send" style="background:var(--c-primary);">Send</button>
+          <button class="btn btn-outline" id="btn-load-example" data-analytics="demo_load_example">Load Example</button>
+          <button class="btn btn-primary" id="btn-send" style="background:var(--c-primary);" data-analytics="demo_send">Send</button>
         </div>
       </div>
     </div>
@@ -831,7 +831,7 @@ body {
   <div class="modal" id="modal">
     <div class="modal-body" id="modal-body"></div>
     <div class="modal-footer">
-      <button class="btn btn-outline" id="btn-modal-close" style="padding:10px 20px;font-size:.9rem;">Close</button>
+      <button class="btn btn-outline" id="btn-modal-close" style="padding:10px 20px;font-size:.9rem;" data-analytics="demo_close_modal">Close</button>
     </div>
   </div>
 </div>
@@ -905,12 +905,12 @@ body {
       </div>
     </div>
     <div style="text-align:center; margin-top: 28px;">
-      <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank" style="font-size:1.05rem; padding: 16px 32px;">
+      <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank" style="font-size:1.05rem; padding: 16px 32px;" data-analytics="cta_download_install">
         <svg width="20" height="20" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="4" fill="currentColor"/></svg>
         Download v1.0.1 (Free) &mdash; Start Here
       </a>
       <p style="margin-top:10px; font-size:.78rem; color:var(--c-text-muted);">
-        Detailed instructions in <a href="https://github.com/Selfloom/smart-email-guard-demo/blob/main/INSTALL.md" target="_blank" style="color:var(--c-primary);font-weight:600;">INSTALL.md</a> &middot; Zero sign-up &middot; 100% local &middot; Works offline
+        Detailed instructions in <a href="https://github.com/Selfloom/smart-email-guard-demo/blob/main/INSTALL.md" target="_blank" style="color:var(--c-primary);font-weight:600;" data-analytics="nav_install_md">INSTALL.md</a> &middot; Zero sign-up &middot; 100% local &middot; Works offline
       </p>
     </div>
   </div>
@@ -1075,7 +1075,7 @@ body {
     </div>
     <p style="text-align:center;margin-top:20px;font-size:.82rem;color:var(--c-text-muted);">
       These are real screenshots from the Chrome extension &mdash; identical to what you'll see on install.
-      <br><a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" target="_blank" style="color:var(--c-primary);font-weight:600;">Download v1.0.1 (Free) &rarr;</a>
+      <br><a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" target="_blank" style="color:var(--c-primary);font-weight:600;" data-analytics="cta_download_screenshots">Download v1.0.1 (Free) &rarr;</a>
     </p>
   </div>
 </section>
@@ -1203,7 +1203,7 @@ body {
           <li>No data collection</li>
           <li>Community updates</li>
         </ul>
-        <a href="#" class="btn btn-outline" style="width:100%;text-align:center;justify-content:center;">Get Started Free</a>
+        <a href="#" class="btn btn-outline" style="width:100%;text-align:center;justify-content:center;" data-analytics="cta_pricing_free">Get Started Free</a>
       </div>
       <div class="pricing-card featured">
         <span class="badge badge-primary" style="margin-bottom:8px;">Most Popular</span>
@@ -1217,7 +1217,7 @@ body {
           <li>Early access to new features</li>
           <li>Everything in Free</li>
         </ul>
-        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;justify-content:center;">Get Pro</a>
+        <a href="#" class="btn btn-primary" style="width:100%;text-align:center;justify-content:center;" data-analytics="cta_pricing_pro">Get Pro</a>
       </div>
     </div>
   </div>
@@ -1234,32 +1234,32 @@ body {
       <div style="padding:18px 20px;background:var(--c-bg);border-radius:var(--radius);border:1px solid var(--c-border);">
         <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;">📎 r/actuary &mdash; "How do you avoid this mistake?"</div>
         <p style="font-size:.83rem;color:var(--c-text-muted);margin:0 0 8px;">Top comment (31 upvotes): a 6-step manual ritual. Outlook's built-in detection "literally never prompted me."</p>
-        <a href="https://www.reddit.com/r/actuary/comments/nbovox/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;">View thread &rarr;</a>
+        <a href="https://www.reddit.com/r/actuary/comments/nbovox/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;" data-analytics="source_reddit">View thread &rarr;</a>
       </div>
       <div style="padding:18px 20px;background:var(--c-bg);border-radius:var(--radius);border:1px solid var(--c-border);">
         <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;">📎 r/sales &mdash; "UHHH I MADE SERIOUS F*** WUCKY"</div>
         <p style="font-size:.83rem;color:var(--c-text-muted);margin:0 0 8px;">Sales professionals coping with email mistakes through dark humor. Forgetting attachments costs deals.</p>
-        <a href="https://www.reddit.com/r/sales/comments/wbc1ah/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;">View thread &rarr;</a>
+        <a href="https://www.reddit.com/r/sales/comments/wbc1ah/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;" data-analytics="source_reddit">View thread &rarr;</a>
       </div>
       <div style="padding:18px 20px;background:var(--c-bg);border-radius:var(--radius);border:1px solid var(--c-border);">
         <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;">📎 r/AskReddit &mdash; 746 comments of horror stories</div>
         <p style="font-size:.83rem;color:var(--c-text-muted);margin:0 0 8px;">"Embarrassing emails to the wrong recipient" &mdash; hundreds of stories, zero tool recommendations.</p>
-        <a href="https://www.reddit.com/r/AskReddit/comments/fhx27/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;">View thread &rarr;</a>
+        <a href="https://www.reddit.com/r/AskReddit/comments/fhx27/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;" data-analytics="source_reddit">View thread &rarr;</a>
       </div>
       <div style="padding:18px 20px;background:var(--c-bg);border-radius:var(--radius);border:1px solid var(--c-border);">
         <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;">📎 r/chrome_extensions &mdash; Attachment Reminder validated</div>
         <p style="font-size:.83rem;color:var(--c-text-muted);margin:0 0 8px;">A developer posted Attachment Reminder in May 2026 &mdash; instant traction. The demand is proven.</p>
-        <a href="https://www.reddit.com/r/chrome_extensions/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;">View subreddit &rarr;</a>
+        <a href="https://www.reddit.com/r/chrome_extensions/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;" data-analytics="source_reddit">View subreddit &rarr;</a>
       </div>
       <div style="padding:18px 20px;background:var(--c-bg);border-radius:var(--radius);border:1px solid var(--c-border);">
         <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;">📎 HN &mdash; "It looks like you forgot the attachment"</div>
         <p style="font-size:.83rem;color:var(--c-text-muted);margin:0 0 8px;">A simple attachment reminder generated 37 points and 33 comments on Hacker News. People love this feature.</p>
-        <a href="https://news.ycombinator.com/item?id=29809468" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;">View thread &rarr;</a>
+        <a href="https://news.ycombinator.com/item?id=29809468" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;" data-analytics="source_hn">View thread &rarr;</a>
       </div>
       <div style="padding:18px 20px;background:var(--c-bg);border-radius:var(--radius);border:1px solid var(--c-border);">
         <div style="font-weight:700;font-size:.95rem;margin-bottom:4px;">📎 r/NoStupidQuestions &mdash; "Stupid and embarrassing"</div>
         <p style="font-size:.83rem;color:var(--c-text-muted);margin:0 0 8px;">7.2M subscriber subreddit: someone self-describes as embarrassed about sending emails without attachments.</p>
-        <a href="https://www.reddit.com/r/NoStupidQuestions/comments/j78tmc/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;">View thread &rarr;</a>
+        <a href="https://www.reddit.com/r/NoStupidQuestions/comments/j78tmc/" target="_blank" rel="noopener" style="font-size:.8rem;color:var(--c-primary);font-weight:600;text-decoration:none;" data-analytics="source_reddit">View thread &rarr;</a>
       </div>
     </div>
     <p style="text-align:center;margin-top:24px;font-size:.82rem;color:var(--c-text-muted);">
@@ -1505,7 +1505,7 @@ body {
 <!-- ─── Sticky Download Bar ─── -->
 <div class="sticky-cta" id="sticky-cta">
   <span class="cta-text">Stop sending oops emails. <span>Install in 60 seconds.</span></span>
-  <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank" style="font-weight:700;">
+  <a href="https://github.com/Selfloom/smart-email-guard-demo/releases/tag/v1.0.1" class="btn btn-chrome" target="_blank" style="font-weight:700;" data-analytics="cta_download_sticky">
     <svg width="16" height="16" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="4" fill="currentColor"/></svg>
     Download v1.0.1 (Free)
   </a>
@@ -1530,6 +1530,342 @@ body {
   }
   window.addEventListener('scroll', checkScroll, { passive: true });
   checkScroll();
+})();
+</script>
+
+<!-- ═══ Analytics & Feedback Loop ═══ -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Constants ──
+  var STORAGE_KEY = 'seg_analytics';
+  var SESSION_KEY = 'seg_session';
+  var VISITOR_KEY = 'seg_visitor_id';
+
+  // ── Helpers ──
+  function uid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0;
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+
+  function loadJSON(key) {
+    try { var d = localStorage.getItem(key); return d ? JSON.parse(d) : null; } catch(e) { return null; }
+  }
+
+  function saveJSON(key, obj) {
+    try { localStorage.setItem(key, JSON.stringify(obj)); } catch(e) { /* quota exceeded */ }
+  }
+
+  function loadSession(key) {
+    try { var d = sessionStorage.getItem(key); return d ? JSON.parse(d) : null; } catch(e) { return null; }
+  }
+
+  function saveSession(key, obj) {
+    try { sessionStorage.setItem(key, JSON.stringify(obj)); } catch(e) {}
+  }
+
+  function getUTMParams() {
+    var q = window.location.search;
+    if (!q) return {};
+    var p = {};
+    q.substring(1).split('&').forEach(function(pair) {
+      var kv = pair.split('=');
+      var k = decodeURIComponent(kv[0]);
+      if (k.indexOf('utm_') === 0) p[k] = decodeURIComponent(kv[1] || '');
+    });
+    return p;
+  }
+
+  // ── Visitor Identity ──
+  var visitorId = localStorage.getItem(VISITOR_KEY);
+  if (!visitorId) { visitorId = uid(); localStorage.setItem(VISITOR_KEY, visitorId); }
+
+  // ── Analytics State ──
+  var store = loadJSON(STORAGE_KEY) || {
+    totalPageViews: 0,
+    uniqueVisitors: 0,
+    scrollMilestones: { 25: false, 50: false, 75: false, 100: false },
+    clicks: {},
+    referrers: {},
+    utmSources: {},
+    firstVisitAt: null,
+    lastVisitAt: null
+  };
+
+  var session = loadSession(SESSION_KEY) || {
+    pageViewRecorded: false,
+    scrollMilestones: {},
+    startTime: Date.now(),
+    clicks: []
+  };
+
+  // ── Page View ──
+  if (!session.pageViewRecorded) {
+    session.pageViewRecorded = true;
+
+    // Is this a new unique visitor? (by visitorId)
+    var knownVisitors = loadJSON('seg_visitors') || {};
+    var isNew = !knownVisitors[visitorId];
+    if (isNew) {
+      knownVisitors[visitorId] = true;
+      saveJSON('seg_visitors', knownVisitors);
+      store.uniqueVisitors = (store.uniqueVisitors || 0) + 1;
+      store.firstVisitAt = store.firstVisitAt || new Date().toISOString();
+    }
+
+    store.totalPageViews = (store.totalPageViews || 0) + 1;
+    store.lastVisitAt = new Date().toISOString();
+
+    // Referrer tracking (external only, not same-origin)
+    var ref = document.referrer;
+    if (ref && ref.indexOf(window.location.origin) !== 0) {
+      try {
+        var refHost = (new URL(ref)).hostname;
+        store.referrers = store.referrers || {};
+        store.referrers[refHost] = (store.referrers[refHost] || 0) + 1;
+      } catch(e) {}
+    }
+
+    // UTM tracking
+    var utm = getUTMParams();
+    var utmKeys = Object.keys(utm);
+    if (utmKeys.length > 0) {
+      store.utmSources = store.utmSources || {};
+      var sourceKey = (utm.utm_source || 'direct') + '|' + (utm.utm_medium || 'none') + '|' + (utm.utm_campaign || 'none');
+      store.utmSources[sourceKey] = (store.utmSources[sourceKey] || 0) + 1;
+    }
+
+    saveJSON(STORAGE_KEY, store);
+    saveSession(SESSION_KEY, session);
+  }
+
+  // ── Scroll Depth Tracking ──
+  var scrollMilestonesFired = {};
+  function trackScrollDepth() {
+    var scrollH = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollH <= 0) return;
+    var pct = Math.round((window.scrollY / scrollH) * 100);
+    [25, 50, 75, 100].forEach(function(m) {
+      if (pct >= m && !scrollMilestonesFired[m]) {
+        scrollMilestonesFired[m] = true;
+        store.scrollMilestones = store.scrollMilestones || {};
+        store.scrollMilestones[m] = true;
+        saveJSON(STORAGE_KEY, store);
+      }
+    });
+  }
+  window.addEventListener('scroll', (function() {
+    var timeout;
+    return function() {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(trackScrollDepth, 200);
+    };
+  })(), { passive: true });
+  trackScrollDepth(); // initial check
+
+  // ── Click Tracking ──
+  function getClickLabel(el) {
+    // Priority: data-analytics > title/aria-label > innerText snippet > id > class hint
+    if (el.dataset && el.dataset.analytics) return el.dataset.analytics;
+    if (el.getAttribute('title')) return 'title:' + el.getAttribute('title');
+    if (el.getAttribute('aria-label')) return 'aria:' + el.getAttribute('aria-label');
+    var text = (el.innerText || el.textContent || '').trim().substring(0, 40);
+    if (text) return 'text:' + text;
+    if (el.id) return '#' + el.id;
+    if (el.className && typeof el.className === 'string') {
+      var cls = el.className.split(' ').filter(function(c) { return c.length > 2 && c.length < 30; })[0];
+      if (cls) return '.' + cls;
+    }
+    return 'tag:' + el.tagName.toLowerCase();
+  }
+
+  document.addEventListener('click', function(e) {
+    var el = e.target;
+    // Walk up to find a clickable parent (a, button, [role=button], .btn)
+    while (el && el !== document.body) {
+      var tag = el.tagName ? el.tagName.toLowerCase() : '';
+      if (tag === 'a' || tag === 'button' || el.getAttribute('role') === 'button' || (el.className && typeof el.className === 'string' && el.className.indexOf('btn') !== -1)) {
+        break;
+      }
+      el = el.parentElement;
+    }
+    if (!el || el === document.body) return;
+
+    var label = getClickLabel(el);
+    store.clicks = store.clicks || {};
+    store.clicks[label] = (store.clicks[label] || 0) + 1;
+
+    // Session-level click log (ordered, with timestamps)
+    session.clicks = session.clicks || [];
+    session.clicks.push({ label: label, ts: Date.now(), href: el.href || null });
+
+    saveJSON(STORAGE_KEY, store);
+    saveSession(SESSION_KEY, session);
+  }, true); // capture phase to get clicks before navigation
+
+  // ── Time on Page (save on unload) ──
+  window.addEventListener('beforeunload', function() {
+    var elapsed = Math.round((Date.now() - session.startTime) / 1000);
+    store.timeOnPageBucket = store.timeOnPageBucket || { '<10s': 0, '10-30s': 0, '30-60s': 0, '1-3m': 0, '3m+': 0 };
+    if      (elapsed < 10)  store.timeOnPageBucket['<10s']++;
+    else if (elapsed < 30)  store.timeOnPageBucket['10-30s']++;
+    else if (elapsed < 60)  store.timeOnPageBucket['30-60s']++;
+    else if (elapsed < 180) store.timeOnPageBucket['1-3m']++;
+    else                    store.timeOnPageBucket['3m+']++;
+    saveJSON(STORAGE_KEY, store);
+  });
+
+  // ── Analytics Dashboard (accessible via ?analytics) ──
+  var showDashboard = (window.location.search.indexOf('analytics') !== -1);
+  if (showDashboard) {
+    document.addEventListener('DOMContentLoaded', function() {
+      var dash = document.createElement('div');
+      dash.id = 'analytics-dashboard';
+      dash.style.cssText = 'position:fixed;top:10px;right:10px;width:380px;max-height:90vh;overflow-y:auto;background:#1e1b4b;color:#e2e8f0;border:2px solid #6366f1;border-radius:12px;padding:20px;z-index:99999;font-family:monospace;font-size:12px;line-height:1.5;box-shadow:0 20px 60px rgba(0,0,0,.5);';
+
+      var s = store;
+      var ses = session;
+      var elapsed = Math.round((Date.now() - ses.startTime) / 1000);
+
+      var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">';
+      html += '<h3 style="margin:0;color:#818cf8;font-size:14px;">📊 Analytics Dashboard</h3>';
+      html += '<button onclick="this.parentElement.parentElement.remove()" style="background:#ef4444;color:white;border:none;border-radius:4px;padding:4px 10px;cursor:pointer;font-size:11px;">✕</button>';
+      html += '</div>';
+
+      // Visitor
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Visitor</strong><br>';
+      html += 'ID: ' + visitorId.substring(0,8) + '...<br>';
+      html += 'First seen: ' + (s.firstVisitAt || 'now') + '<br>';
+      html += 'Last seen: ' + (s.lastVisitAt || 'now') + '</div>';
+
+      // Totals
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Totals</strong><br>';
+      html += 'Page views: ' + (s.totalPageViews || 0) + '<br>';
+      html += 'Unique visitors: ' + (s.uniqueVisitors || 0) + '<br>';
+      html += 'Time this session: ' + elapsed + 's</div>';
+
+      // Scroll
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Scroll Depth</strong><br>';
+      var sm = s.scrollMilestones || {};
+      html += '25%: ' + (sm[25] ? '✅' : '—') + ' | 50%: ' + (sm[50] ? '✅' : '—') + ' | 75%: ' + (sm[75] ? '✅' : '—') + ' | 100%: ' + (sm[100] ? '✅' : '—') + '</div>';
+
+      // Time on page buckets
+      var tb = s.timeOnPageBucket || {};
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Time on Page (all visits)</strong><br>';
+      html += '&lt;10s: '+(tb['<10s']||0)+' | 10-30s: '+(tb['10-30s']||0)+' | 30-60s: '+(tb['30-60s']||0)+'<br>';
+      html += '1-3m: '+(tb['1-3m']||0)+' | 3m+: '+(tb['3m+']||0)+'</div>';
+
+      // Clicks
+      html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Click Events</strong><br>';
+      var clicks = s.clicks || {};
+      var cKeys = Object.keys(clicks).sort(function(a,b) { return clicks[b] - clicks[a]; });
+      if (cKeys.length === 0) html += '<span style="color:#94a3b8;">none yet</span><br>';
+      cKeys.forEach(function(k) {
+        html += escapeHtml(k) + ': <strong>' + clicks[k] + '</strong><br>';
+      });
+      html += '</div>';
+
+      // Referrers
+      var refs = s.referrers || {};
+      var rKeys = Object.keys(refs);
+      if (rKeys.length > 0) {
+        html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">Referrers</strong><br>';
+        rKeys.forEach(function(k) {
+          html += escapeHtml(k) + ': <strong>' + refs[k] + '</strong><br>';
+        });
+        html += '</div>';
+      }
+
+      // UTM
+      var utms = s.utmSources || {};
+      var uKeys = Object.keys(utms);
+      if (uKeys.length > 0) {
+        html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">UTM Sources</strong><br>';
+        uKeys.forEach(function(k) {
+          html += escapeHtml(k) + ': <strong>' + utms[k] + '</strong><br>';
+        });
+        html += '</div>';
+      }
+
+      // Session clicks
+      var sc = ses.clicks || [];
+      if (sc.length > 0) {
+        html += '<div style="margin-bottom:12px;"><strong style="color:#a5b4fc;">This Session Clicks</strong><br>';
+        sc.forEach(function(c) {
+          html += '[' + new Date(c.ts).toISOString().substring(11,19) + '] ' + escapeHtml(c.label) + '<br>';
+        });
+        html += '</div>';
+      }
+
+      // ── Event Label Legend ──
+      html += '<details style="margin-top:8px;font-size:10px;color:#94a3b8;background:#1e293b;border-radius:4px;padding:6px 10px;">';
+      html += '<summary style="cursor:pointer;font-weight:600;color:#cbd5e1;">📖 Event Label Map</summary>';
+      html += '<table style="width:100%;border-collapse:collapse;margin-top:4px;line-height:1.4;">';
+      var legend = [
+        ['cta_download_header','🟢 Hero download CTA — high conversion intent'],
+        ['cta_download_install','🟢 Install guide download — ready to install'],
+        ['cta_download_sticky','🟡 Sticky bar download — scrolled past hero'],
+        ['cta_download_screenshots','🟡 Screenshot section download — interested'],
+        ['cta_try_demo','🔵 Demo button — exploring product'],
+        ['demo_load_example','🔵 Load Example — testing simulation'],
+        ['demo_send','🔵 Send button — completed demo flow'],
+        ['demo_close_modal','🔵 Closed warning modal — saw alert'],
+        ['cta_pricing_free','🟣 Pricing Free — cost-conscious'],
+        ['cta_pricing_pro','🟣 Pricing Pro — willing-to-pay signal'],
+        ['source_reddit','🟠 Reddit thread — social validation'],
+        ['source_hn','🟠 HN thread — tech validation'],
+        ['nav_blog','⚪ Blog navigation — content interest'],
+        ['nav_install_md','⚪ INSTALL.md — technical reader'],
+        ['nav_privacy','⚪ Privacy policy — trust check'],
+        ['analytics_copy_json','⚪ Exported stats — power user']
+      ];
+      for (var i = 0; i < legend.length; i++) {
+        html += '<tr><td style="padding:2px 6px;font-family:monospace;white-space:nowrap;">' + legend[i][0] + '</td><td style="padding:2px 0;">' + legend[i][1] + '</td></tr>';
+      }
+      html += '</table></details>';
+
+      // Copy button
+      html += '<button id="copy-analytics-json" data-analytics="analytics_copy_json" style="background:#6366f1;color:white;border:none;border-radius:6px;padding:8px 14px;cursor:pointer;font-size:12px;width:100%;">📋 Copy Full Stats as JSON</button>';
+      html += '<div id="copy-confirm" style="text-align:center;margin-top:6px;color:#34d399;font-size:11px;display:none;">Copied!</div>';
+
+      dash.innerHTML = html;
+      document.body.appendChild(dash);
+
+      // Copy handler
+      document.getElementById('copy-analytics-json').addEventListener('click', function() {
+        var payload = {
+          visitorId: visitorId,
+          exportedAt: new Date().toISOString(),
+          page: window.location.href,
+          totals: { pageViews: s.totalPageViews, uniqueVisitors: s.uniqueVisitors },
+          scrollMilestones: s.scrollMilestones,
+          timeOnPageBuckets: s.timeOnPageBucket,
+          clicks: s.clicks,
+          referrers: s.referrers,
+          utmSources: s.utmSources,
+          sessionClicks: (ses.clicks || []).map(function(c) { return { label: c.label, href: c.href }; })
+        };
+        navigator.clipboard.writeText(JSON.stringify(payload, null, 2)).then(function() {
+          var el = document.getElementById('copy-confirm');
+          el.style.display = 'block';
+          setTimeout(function() { el.style.display = 'none'; }, 2000);
+        }).catch(function() {
+          alert('Could not copy. Check console.');
+          console.log(payload);
+        });
+      });
+    });
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+  }
+
+  // ── Log startup ──
+  console.log('[SmartEmailGuard Analytics] Visitor:', visitorId.substring(0,8), '| PV #', store.totalPageViews, '| Unique:', store.uniqueVisitors, '| Add ?analytics to URL for dashboard');
 })();
 </script>
 
